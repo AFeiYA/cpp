@@ -1,4 +1,4 @@
-// primer: 4.9. The sizeof Operator
+// primer: 7.1 Defining Abstract Data Types
 
 #include <string>
 #include <iostream>
