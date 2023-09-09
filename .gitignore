@@ -23,3 +23,7 @@
 *.swp
 *.log
 *.DS_Store
+*.ilk
+*.pdb
+books/C++ Primer 5th ed.pdf
+.vscode/tasks.json
