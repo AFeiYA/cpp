@@ -36,19 +36,43 @@ void fun3(int n)
 	}
 }
 
+void fun4(int n);
+void fun5(int n);
+// indirect recursion
+void fun4(int n)
+{
+	if (n > 0)
+	{
+		std::cout << n << " ";
+		fun5(n - 1);
+	}
+}
+void fun5(int n)
+{
+	if (n > 1)
+	{
+		std::cout << n << " ";
+		fun4(n / 2);
+	}
+}
+
+// TOH
+void TOH(int n, int A, int B, int C)
+{
+	if (n > 0)
+	{
+		TOH(n - 1, A, C, B);
+		std::cout << "from " << A << " to " << C << std::endl;
+		TOH(n - 1, B, A, C);
+	}
+}
+
+
 int main()
 {
-    cout<<"Head Recursion: ";
-	fun1(3);	
-	cout<<endl;
-	// 1 2 3
-	cout<<"Tail Recursion: ";
-	fun2(3);
-	// 3 2 1
-	cout<<endl;
-	cout<<"Tree Recursion: ";
-	fun3(3);
-	// 3 2 1 1 2 1 1
-	cout<<endl;
+
+
+	TOH(1, 1, 2, 3);
+
     return 0;
 }
