@@ -65,13 +65,47 @@ int LinearSearch(struct Array* arr, int key)
 		if (key == arr->A[i])
 		{
 			// move to front
-			 swap(&arr->A[i], &arr->A[0]);
+			// swap(&arr->A[i], &arr->A[0]);
 			// transposition
 			// swap(&arr->A[i], &arr->A[i - 1]);
 			return i;
 		}
 	}
 	return -1;
+}
+// binary search
+int BinarySearch(struct Array arr, int key)
+{
+	int l, mid, h;
+	l = 0;
+	h = arr.length - 1;
+	while (l <= h)
+	{
+		mid = (l + h) / 2;
+		if (key == arr.A[mid])
+			return mid;
+		else if (key < arr.A[mid])
+			h = mid - 1;
+		else
+			l = mid + 1;
+	}
+	return -1;
+}
+
+//sort array
+void SortArray(struct Array* arr)
+{
+	int i, j;
+	for (i = 0; i < arr->length - 1; i++)
+	{
+		for (j = i + 1; j < arr->length; j++)
+		{
+			if (arr->A[i] > arr->A[j])
+			{
+				swap(&arr->A[i], &arr->A[j]);
+			}
+		}
+	}
 }
 
 int main()
@@ -83,6 +117,9 @@ int main()
 	Display(arr);
 	std::cout << std::endl;
 	std::cout << LinearSearch(&arr, 5) << std::endl;
+	SortArray(&arr);
+	Display(arr);
+	std::cout << BinarySearch(arr, 5) << std::endl;
 	return 0;
 }
 
