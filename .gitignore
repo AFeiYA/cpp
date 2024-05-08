@@ -32,3 +32,4 @@ CalculatorTutorial/
 algorithms/algorithms/x64/
 *.suo
 algorithms/.vs/
+algorithms/*/x64/
