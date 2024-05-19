@@ -17,188 +17,123 @@
 // Linked lists are used to represent polynomials, sparse matrices, and other data structures
 // Linked lists are used in memory management, garbage collection, and other applications
 // Linked lists have several advantages over arrays, such as dynamic size, ease of insertion and deletion, and efficient memory utilization
-
-struct Node
+template <class T>
+class Node
 {
-    int data;
-    // Self referential structure
-    Node *next;
-}*first = NULL, *second=NULL, *third=NULL;
+public:
+	T data;
+	Node* next;
+};
 
 
-
-void create(int A[], int n)
+template <class T>
+class LinkedList
 {
-	Node *t, *last;
-	first = new Node;
+private:
+	Node<T> *first;
+public:
+	LinkedList() { first = NULL; }
+	LinkedList(T A[], int n);
+	~LinkedList();
+	void Display();
+	void Insert(int index, T x);
+	int Delete(int index);
+	int Length();
+};
+
+// Creating a linked list from an array
+template <class T>
+LinkedList<T>::LinkedList(T A[], int n)
+{
+	Node<T> *last, *t;
+	int i = 0;
+
+	first = new Node<T>;
 	first->data = A[0];
 	first->next = NULL;
 	last = first;
 
-	for (int i = 1; i < n; i++)
+	for (i = 1; i < n; i++)
 	{
-		t = new Node;
+		t = new Node<T>;
 		t->data = A[i];
 		t->next = NULL;
 		last->next = t;
 		last = t;
 	}
-}
-void create_second(int A[], int n)
-{
-	Node* t, * last;
-	second = new Node;
-	second->data = A[0];
-	second->next = NULL;
-	last = second;
+}	
 
-	for (int i = 1; i < n; i++)
+// Destructor for linked list
+template <class T>
+LinkedList<T>::~LinkedList()
+{
+	Node<T> *p = first;
+	while (first)
 	{
-		t = new Node;
-		t->data = A[i];
-		t->next = NULL;
-		last->next = t;
-		last = t;
+		first = first->next;
+		delete p;
+		p = first;
 	}
 }
 
-void Display(Node* p)
+// Displaying a linked list
+template <class T>
+void LinkedList<T>::Display()
 {
-	while (p != NULL)
+	Node<T> *p = first;
+	while (p)
 	{
 		std::cout << p->data << " ";
 		p = p->next;
 	}
+	std::cout << std::endl;
 }
-int Count(Node* p)
+// Inserting a node at a given index in a linked list
+template <class T>
+void LinkedList<T>::Insert(int index, T x)
 {
-	int count = 0;
-	while (p != NULL)
-	{
-		count++;
-		p = p->next;
-	}
-	return count;
-}
+	Node<T> *t, *p = first;
 
-int Add(Node* p)
-{
-	int sum = 0;
-	while (p != NULL)
-	{
-		sum += p->data;
-		p = p->next;
-	}
-	return sum;
-}
-
-int Max(Node* p)
-{
-	int max = INT_MIN;
-	while (p != NULL)
-	{
-		if (p->data > max)
-		{
-			max = p->data;
-		}
-		p = p->next;
-	}
-	return max;
-}
-Node* LSearch(Node* p, int key)
-{
-	while (p != NULL)
-	{
-		if (key == p->data)
-		{
-			return p;
-		}
-		p = p->next;
-	}
-	return NULL;
-}
-// Inserting a node in a linked list
-void Insert(Node* p, int index, int x)
-{
-	Node* t;
-	// Check if the index is valid or not 
-	// If the index is less than 0 or greater than the number of nodes in the linked list, return
-	if (index < 0 || index > Count(p))
-	{
+	if (index < 0 || index > Length())
 		return;
-	}
-	t = new Node;
+
+	t = new Node<T>;
 	t->data = x;
-	// If the index is 0, insert the new node at the beginning of the linked list
+	t->next = NULL;
+
 	if (index == 0)
 	{
-		// Set the link field of the new node to point to the first node in the sequence
 		t->next = first;
 		first = t;
 	}
 	else
 	{
-		// Traverse the linked list to find the node at the given index
-		// Set the link field of the new node to point to the next node in the sequence
 		for (int i = 0; i < index - 1; i++)
-		{
 			p = p->next;
-		}
-		// Set the link field of the previous node to point to the new node
 		t->next = p->next;
 		p->next = t;
 	}
 }
 
-void SortedInsert(Node* p, int x)
+// Deleting a node at a given index in a linked list
+template <class T>
+int LinkedList<T>::Delete(int index)
 {
-	Node* q = NULL;
-	Node* t;
-	t = new Node;
-	t->data = x;
-	t->next = NULL;
-	if (first == NULL)
-	{
-		first = t;
-	}
-	else
-	{
-		while (p && p->data < x)
-		{
-			q = p;
-			p = p->next;
-		}
-		if (p == first)
-		{
-			t->next = first;
-			first = t;
-		}
-		else
-		{
-			t->next = q->next;
-			q->next = t;
-		}
-	}
-}
+	Node<T> *p, *q = NULL;
+	T x = -1;
 
-int Delete(Node* p, int index)
-{
-	Node* q = NULL;
-	int x = -1;
-	if (index < 1 || index > Count(p))
-	{
+	if (index < 1 || index > Length())
 		return -1;
-	}
 	if (index == 1)
 	{
-		q = first;
-		x = first->data;
+		p = first;
 		first = first->next;
-		delete q;
-		return x;
+		x = p->data;
+		delete p;
 	}
 	else
 	{
+		p = first;
 		for (int i = 0; i < index - 1; i++)
 		{
 			q = p;
@@ -207,172 +142,37 @@ int Delete(Node* p, int index)
 		q->next = p->next;
 		x = p->data;
 		delete p;
-		return x;
 	}
+	return x;
 }
-bool IsSorted(Node* p)
+
+// Finding the length of a linked list
+template <class T>
+int LinkedList<T>::Length()
 {
-	int x = INT_MIN;
-	while (p != NULL)
+	Node<T> *p = first;
+	int len = 0;
+
+	while (p)
 	{
-		if (p->data < x)
-		{
-			return false;
-		}
-		x = p->data;
+		len++;
 		p = p->next;
 	}
-	return true;
+	return len;
 }
-// Remove duplicates from a sortd linked list
-void RemoveDuplicates(Node* p)
-{
-	Node* q = p->next;
-	while (q != NULL)
-	{
-		if (p->data != q->data)
-		{
-			p = q;
-			q = q->next;
-		}
-		else
-		{
-			p->next = q->next;
-			delete q;
-			q = p->next;
-		}
-	}
-}
-
-// Reverse a linked list
-// How to reverse a linked list?
-// Sliding pointers technique
-// Initialize three pointers: p, q, and r
-// Time complexity of reversing a linked list: O(n)
-void Reverse(Node* p)
-{
-	Node* q = NULL;
-	Node* r = NULL;
-	while (p != NULL)
-	{
-		r = q;
-		q = p;
-		p = p->next;
-		q->next = r;
-	}
-	first = q;
-}
-// Concatenate two linked lists
-// How to concatenate two linked lists?
-// Traverse the first linked list to the last node
-// Set the link field of the last node to point to the first node of the second linked list
-// Time complexity of concatenating two linked lists: O(n)
-void Concat(Node* p, Node* q)
-{
-	while (p->next != NULL)
-	{
-		p = p->next;
-	}
-	p->next = q;
-}
-
-
-// Merge two sorted linked lists
-// How to merge two sorted linked lists?
-// p and q are the nodes of the two sorted linked lists
-// Create a new linked list to store the merged result
-// Initialize two pointers: last and third
-// Compare the data fields of the first nodes of the two linked lists
-// Set the third pointer to point to the smaller node
-// Set the last pointer to point to the smaller node
-// Move the smaller node to the next node in its linked list
-// Time complexity of merging two sorted linked lists: O(n)
-Node* Merge(Node* p, Node* q)
-{
-	Node* last;
-	Node* third;
-
-	if (p->data < q->data)
-	{
-		third = last = p;
-		p = p->next;
-		third->next = NULL;
-	}
-	else
-	{
-		third = last = q;
-		q = q->next;
-		third->next = NULL;
-	}
-	while (p && q)
-	{
-		if (p->data < q->data)
-		{
-			last->next = p;
-			last = p;
-			p = p->next;
-			last->next = NULL;
-		}
-		else
-		{
-			last->next = q;
-			last = q;
-			q = q->next;
-			last->next = NULL;
-		}
-	}
-	if (p)
-	{
-		last->next = p;
-	}
-	if (q)
-	{
-		last->next = q;
-	}
-	return third;
-}
-
 
 
 int main()
 {
     int A[] = {3, 5, 7, 10, 15};
+	int B[] = {0,2,4,6,8};
 
-	create(A, 5);
-
-	Insert(first, 0, 1);
-
-	SortedInsert(first, 9);
-	SortedInsert(first, 2);
-	Display(first);
-
-
-	std::cout << std::endl;
-	Delete(first, 1);
-	Delete(first, 2);
-	Insert(first,2, 5);
-	Display(first);
-	IsSorted(first) ? std::cout << "Sorted" : std::cout << "Not Sorted" << std::endl;
-	RemoveDuplicates(first);
-	std::cout << std::endl;
-	Display(first);
-	Reverse(first);
-	std::cout << std::endl;
-	Display(first);
-	Reverse(first);
-	std::cout << std::endl;
-	int B[] = { 2, 4, 6, 8, 10 };
-	create_second(B, 5);
-	Display(second);
-	std::cout << std::endl;
-	Display(first);
-	std::cout << std::endl;
-	Display(second);
-	std::cout << std::endl;
-	Display(Merge(first, second));
-	std::cout << "Count: " << Count(first) << std::endl;
-	std::cout << "Sum: " << Add(first) << std::endl;
-	std::cout << "Max: " << Max(first) << std::endl;
-
+	LinkedList<int> l1(A, 5);
+	std::cout<<"Length: "<<l1.Length()<<std::endl;
+	l1.Display();
+	l1.Insert(0, 2);
+	l1.Display();
+	LinkedList<int> l2(B, 5);
+	l2.Display();
 	return 0;
 }
