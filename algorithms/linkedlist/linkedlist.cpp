@@ -23,7 +23,9 @@ struct Node
     int data;
     // Self referential structure
     Node *next;
-}*first = NULL;
+}*first = NULL, *second=NULL, *third=NULL;
+
+
 
 void create(int A[], int n)
 {
@@ -32,6 +34,23 @@ void create(int A[], int n)
 	first->data = A[0];
 	first->next = NULL;
 	last = first;
+
+	for (int i = 1; i < n; i++)
+	{
+		t = new Node;
+		t->data = A[i];
+		t->next = NULL;
+		last->next = t;
+		last = t;
+	}
+}
+void create_second(int A[], int n)
+{
+	Node* t, * last;
+	second = new Node;
+	second->data = A[0];
+	second->next = NULL;
+	last = second;
 
 	for (int i = 1; i < n; i++)
 	{
@@ -225,6 +244,95 @@ void RemoveDuplicates(Node* p)
 	}
 }
 
+// Reverse a linked list
+// How to reverse a linked list?
+// Sliding pointers technique
+// Initialize three pointers: p, q, and r
+// Time complexity of reversing a linked list: O(n)
+void Reverse(Node* p)
+{
+	Node* q = NULL;
+	Node* r = NULL;
+	while (p != NULL)
+	{
+		r = q;
+		q = p;
+		p = p->next;
+		q->next = r;
+	}
+	first = q;
+}
+// Concatenate two linked lists
+// How to concatenate two linked lists?
+// Traverse the first linked list to the last node
+// Set the link field of the last node to point to the first node of the second linked list
+// Time complexity of concatenating two linked lists: O(n)
+void Concat(Node* p, Node* q)
+{
+	while (p->next != NULL)
+	{
+		p = p->next;
+	}
+	p->next = q;
+}
+
+
+// Merge two sorted linked lists
+// How to merge two sorted linked lists?
+// p and q are the nodes of the two sorted linked lists
+// Create a new linked list to store the merged result
+// Initialize two pointers: last and third
+// Compare the data fields of the first nodes of the two linked lists
+// Set the third pointer to point to the smaller node
+// Set the last pointer to point to the smaller node
+// Move the smaller node to the next node in its linked list
+// Time complexity of merging two sorted linked lists: O(n)
+Node* Merge(Node* p, Node* q)
+{
+	Node* last;
+	Node* third;
+
+	if (p->data < q->data)
+	{
+		third = last = p;
+		p = p->next;
+		third->next = NULL;
+	}
+	else
+	{
+		third = last = q;
+		q = q->next;
+		third->next = NULL;
+	}
+	while (p && q)
+	{
+		if (p->data < q->data)
+		{
+			last->next = p;
+			last = p;
+			p = p->next;
+			last->next = NULL;
+		}
+		else
+		{
+			last->next = q;
+			last = q;
+			q = q->next;
+			last->next = NULL;
+		}
+	}
+	if (p)
+	{
+		last->next = p;
+	}
+	if (q)
+	{
+		last->next = q;
+	}
+	return third;
+}
+
+
 
 int main()
 {
@@ -246,8 +354,22 @@ int main()
 	Display(first);
 	IsSorted(first) ? std::cout << "Sorted" : std::cout << "Not Sorted" << std::endl;
 	RemoveDuplicates(first);
+	std::cout << std::endl;
+	Display(first);
+	Reverse(first);
+	std::cout << std::endl;
+	Display(first);
+	Reverse(first);
+	std::cout << std::endl;
+	int B[] = { 2, 4, 6, 8, 10 };
+	create_second(B, 5);
+	Display(second);
+	std::cout << std::endl;
 	Display(first);
 	std::cout << std::endl;
+	Display(second);
+	std::cout << std::endl;
+	Display(Merge(first, second));
 	std::cout << "Count: " << Count(first) << std::endl;
 	std::cout << "Sum: " << Add(first) << std::endl;
 	std::cout << "Max: " << Max(first) << std::endl;
