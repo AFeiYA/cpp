@@ -175,7 +175,9 @@ int evaluatePostfix(std::string postfix) {
 int main() {
     std::string infix = "(1+2)*(3^2-5)/2+2^2";
     std::cout << "Postfix: " << InfixToPostfix(infix) << std::endl;
+    //Postfix: 12+32^5-*2/22^+
     std::string postfix = InfixToPostfix(infix);
     std::cout << "Evaluation: " << evaluatePostfix(postfix) << std::endl;
+    //Evaluation: 10
     return 0;
 }
