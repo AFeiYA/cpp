@@ -100,3 +100,70 @@ int Tree::Height(Node* root)
 		return y + 1;
 	}
 }
+
+int Tree::Count(Node* root)
+{
+	int x = 0, y = 0;
+	if (root == nullptr) {
+		return 0;
+	}
+	x = Count(root->left);
+	y = Count(root->right);
+	return x + y + 1;
+}
+
+int Tree::CountLeaf(Node* root)
+{
+	int x = 0, y = 0;
+	if (root == nullptr) {
+		return 0;
+	}
+	x = CountLeaf(root->left);
+	y = CountLeaf(root->right);
+	if (root->left == nullptr && root->right == nullptr) {
+		return x + y + 1;
+	}
+	return x + y;
+}
+
+int Tree::CountNonLeaf(Node* root)
+{
+	int x = 0, y = 0;
+	if (root == nullptr) {
+		return 0;
+	}
+	x = CountNonLeaf(root->left);
+	y = CountNonLeaf(root->right);
+	if (root->left != nullptr || root->right != nullptr) {
+		return x + y + 1;
+	}
+	return x + y;
+}
+
+int Tree::CountDegree2(Node* root)
+{
+	int x = 0, y = 0;
+	if (root == nullptr) {
+		return 0;
+	}
+	x = CountDegree2(root->left);
+	y = CountDegree2(root->right);
+	if (root->left != nullptr && root->right != nullptr) {
+
+		return x + y + 1;
+	}
+	return x + y;
+}
+int Tree::CountDegree1(Node* root)
+{
+	int x = 0, y = 0;
+	if (root == nullptr) {
+		return 0;
+	}
+	x = CountDegree1(root->left);
+	y = CountDegree1(root->right);
+	if ((root->left != nullptr && root->right == nullptr) || (root->left == nullptr && root->right != nullptr)) {
+		return x + y + 1;
+	}
+	return x + y;
+}
