@@ -1,5 +1,27 @@
 #pragma once
-
+// Node structure will be used in the Tree  BST and AVL Tree
+// Where should I put this?
+// In the Tree.h file
+// Why?
+// Because it is used in the Tree class
+// What is the purpose of this class?
+// To represent a node in a binary tree
+// What is the data?
+// An integer
+// What are the left and right pointers?
+// Pointers to the left and right children
+// Can BST inherit from Node?
+// No
+// Why?
+// Because Node is not a class
+// Can BST have a Node object?
+// Yes
+// Why?
+// Because Node is a class
+// Can BST inherit from Tree?
+// Yes
+// How?
+// By using the public keyword
 class Node
 {
 public:
@@ -10,8 +32,8 @@ public:
 
 class Tree
 {
-	Node *root;
 public:
+	Node* root;
 	Tree() { root = nullptr; }
 	void CreateTree();
 	void Preorder(Node *p);
