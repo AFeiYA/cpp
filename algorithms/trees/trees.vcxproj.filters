@@ -24,12 +24,18 @@
     <ClCompile Include="BST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AVL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BST.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AVL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

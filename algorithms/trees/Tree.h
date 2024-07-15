@@ -26,6 +26,7 @@ class Node
 {
 public:
 	int data;
+	int height;
 	Node *left;
 	Node *right;
 };
@@ -36,6 +37,7 @@ public:
 	Node* root;
 	Tree() { root = nullptr; }
 	void CreateTree();
+	void CreateTree(int value);
 	void Preorder(Node *p);
 	void Preorder() { Preorder(root); }
 	void Inorder(Node *p);

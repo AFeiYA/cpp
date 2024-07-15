@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Tree.h"
 #include "BST.h"
+#include "AVL.h"
 
 int main()
 {
@@ -38,6 +39,14 @@ int main()
 		std::cout << "Search: found" << res->data << std::endl;
 	}
 
+    AVL avl; 
+    avl.CreateTree(10);
+    avl.Insert(avl.root, 5);
+    avl.Insert(avl.root, 2);
+    avl.Insert(avl.root, 3);
+    avl.Insert(avl.root, 6);
+    avl.Insert(avl.root, 4);
+    avl.Insert(avl.root, 8);
+    avl.Inorder();
     return 0;
-
 }

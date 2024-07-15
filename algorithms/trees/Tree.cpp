@@ -38,6 +38,13 @@ void Tree::CreateTree()
 	}
 }
 
+void Tree::CreateTree(int value)
+{
+	root = new Node;
+	root->data = value;
+	root->left = root->right = nullptr;
+}
+
 void Tree::Preorder(Node* p)
 {
 	if (p) {
