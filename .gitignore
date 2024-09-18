@@ -33,3 +33,9 @@ algorithms/algorithms/x64/
 *.suo
 algorithms/.vs/
 algorithms/*/x64/
+*/*/x64/
+*/*/.vs/
+helloworld/
+/qt/fbx_pipeline/out
+/qt/QtFbx/out/build
+/qt/QtFbx/.vs
