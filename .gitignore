@@ -38,9 +38,13 @@ primer/cp8/
 primer/code/out/
 */*/x64/
 */*/.vs/
+.vs/
 helloworld/
 /qt/fbx_pipeline/out
 /qt/QtFbx/out/build
 /qt/QtFbx/.vs
 /primer/code/*/.vs
-/primer/.vs
+/*/.vs
+algorithms/sparsematrix
+primer/code/*/out/
+primer/cp8/

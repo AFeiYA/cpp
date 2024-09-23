@@ -20,6 +20,7 @@ set(SOURCE_DIR
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ch01)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ch02)
 
 # Add source to this project's executable.
 add_executable (code ${PROJECT_SOURCE}) # Main source file
