@@ -60,7 +60,8 @@ string::size_type find_char(const string& s, char c, string::size_type& occurs)
 
 int main(int argc, char *argv[])
 {	
-	cout << argv[1] << " " << argv[2] << endl;
+	if (argc >=3)
+		cout << argv[1] << " " << argv[2] << endl;
 	auto j = fact(5);
 	cout << "5! is " << j << endl;
 	//cout << fact() << endl;
