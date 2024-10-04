@@ -25,7 +25,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ch03)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ch04)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ch05)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ch06)
-
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ch07)
 
 
 # Add source to this project's executable.

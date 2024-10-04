@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/qt/qml/quickaddressbook">
+        <file>main.qml</file>
+        <file>AddressBookItem.qml</file>
+        <file>NewAddressPopup.qml</file>
+    </qresource>
+</RCC>
