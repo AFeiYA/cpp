@@ -21,6 +21,10 @@ int main()
 	cout <<"X : " << x << endl;
 	auto y = myScreen.get(0, 0);
 	cout <<"Y : " << y << endl;
-
+	const Screen blank(5, 3, ' ');
+	myScreen.set('#').display(cout);
+	cout << endl;
+	blank.display(cout);
+	cout << endl;
 	return 0;
 }
