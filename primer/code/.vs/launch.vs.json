@@ -1,0 +1,38 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "code.exe",
+      "name": "code.exe"
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "ch01.exe (ch01\\ch01.exe)",
+      "name": "ch01.exe (ch01\\ch01.exe)"
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "ch06.exe (ch06\\ch06.exe)",
+      "name": "ch06.exe (ch06\\ch06.exe)",
+      "args": [
+        "arg1",
+        "arg2"
+      ]
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "ch08.exe (ch08\\ch08.exe)",
+      "name": "ch08.exe (ch08\\ch08.exe)",
+      "args": [
+        "arg1",
+        "arg2"
+      ]
+    }
+  ]
+}
