@@ -48,3 +48,4 @@ helloworld/
 algorithms/sparsematrix
 primer/code/*/out/
 primer/cp8/
+!primer/code/.vs/launch.vs.json
