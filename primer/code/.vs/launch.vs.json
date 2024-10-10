@@ -30,7 +30,7 @@
       "projectTarget": "ch08.exe (ch08\\ch08.exe)",
       "name": "ch08.exe (ch08\\ch08.exe)",
       "args": [
-        "arg1",
+        "H:\\cpp\\primer\\code\\resources\\books.txt",
         "arg2"
       ]
     }
